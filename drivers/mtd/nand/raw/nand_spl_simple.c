@@ -9,7 +9,11 @@
 #include <asm/io.h>
 #include <linux/mtd/nand_ecc.h>
 
+/* ??PATCH bkana@leuze.com 2021-02-22 */
+#if defined(CONFIG_SYS_NAND_HW_ECC_OOBFIRST)
 static int nand_ecc_pos[] = CONFIG_SYS_NAND_ECCPOS;
+#endif
+
 static struct mtd_info *mtd;
 static struct nand_chip nand_chip;
 
@@ -111,6 +115,14 @@ static int nand_command(int block, int page, uint32_t offs,
 }
 #endif
 
+/* ??PATCH bkana@leuze.com 2021-02-18 */
+#ifdef CONFIG_SYS_NAND_NO_ECC
+static int nand_is_bad_block(int block)
+{
+	/* ECC check in nand result in no bad blocks check outside of the NAND access. */
+	return 0;
+}
+#else
 static int nand_is_bad_block(int block)
 {
 	struct nand_chip *this = mtd_to_nand(mtd);
@@ -134,6 +146,18 @@ static int nand_is_bad_block(int block)
 
 	return 0;
 }
+#endif
+
+/* ??PATCH bkana@leuze.com 2021-02-18 */
+#if defined(CONFIG_SYS_NAND_NO_ECC)
+static int nand_read_page(int block, int page, uchar *dst)
+{
+	struct nand_chip *this = mtd_to_nand(mtd);
+	nand_command(block, page, 0, NAND_CMD_READ0);
+	this->read_buf(mtd, dst, CONFIG_SYS_NAND_PAGE_SIZE);
+	return 0;
+}
+#else
 
 #if defined(CONFIG_SYS_NAND_HW_ECC_OOBFIRST)
 static int nand_read_page(int block, int page, uchar *dst)
@@ -206,6 +230,7 @@ static int nand_read_page(int block, int page, void *dst)
 
 	return 0;
 }
+#endif
 #endif
 
 /* nand_init() - initialize data to make nand usable by SPL */

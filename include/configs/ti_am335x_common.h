@@ -54,6 +54,15 @@
 #define CONFIG_SKIP_LOWLEVEL_INIT
 #endif
 
+#ifdef CONFIG_NAND
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#ifdef notdefined
+#define CONFIG_SPL_NAND_AM33XX_BCH	/* ELM support */
+#endif
+#define CONFIG_SPL_NAND_SIMPLE	/* ELM support */
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#endif
+
 /*
  * When building U-Boot such that there is no previous loader
  * we need to call board_early_init_f.  This is taken care of in
