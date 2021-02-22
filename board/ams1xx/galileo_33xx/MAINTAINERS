@@ -1,0 +1,6 @@
+galileo_33xx BOARD
+M:	berrux kana <bkana@leuze.com>
+S:	Maintained
+F:	board/ams1xx/galileo_33xx/
+F:	include/configs/galileo_33xx.h
+F:	configs/ams1xx_defconfig

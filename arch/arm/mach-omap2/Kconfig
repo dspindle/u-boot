@@ -186,6 +186,8 @@ source "board/ti/am43xx/Kconfig"
 source "board/ti/am335x/Kconfig"
 source "board/compulab/cm_t335/Kconfig"
 source "board/compulab/cm_t43/Kconfig"
+#??PATCH bkana@leuze.com 2021-02-22
+source "board/ams1xx/galileo_33xx/Kconfig"
 
 config SPL_LDSCRIPT
         default "arch/arm/mach-omap2/u-boot-spl.lds"

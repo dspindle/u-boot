@@ -133,6 +133,14 @@ config TARGET_CM_T335
 	select DM_SERIAL
 	imply CMD_DM
 
+#??PATCH bkana@leuze.com 2021-02-22
+config TARGET_GALILEO_33XX
+	bool "Support galileo_33xx"
+	select DM
+	select DM_GPIO
+	select DM_SERIAL
+	imply CMD_DM
+
 config TARGET_DRACO
 	bool "Support draco"
 	select BOARD_LATE_INIT

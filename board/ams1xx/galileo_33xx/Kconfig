@@ -1,0 +1,15 @@
+if TARGET_GALILEO_33XX
+
+config SYS_BOARD
+	default "galileo_33xx"
+
+config SYS_VENDOR
+	default "ams1xx"
+
+config SYS_SOC
+	default "am33xx"
+
+config SYS_CONFIG_NAME
+	default "galileo_33xx"
+
+endif
