@@ -9,6 +9,9 @@
 #include <asm/io.h>
 #include <linux/mtd/nand_ecc.h>
 
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#pragma GCC optimize ("O0")
+
 /* ??PATCH bkana@leuze.com 2021-02-22 */
 #if defined(CONFIG_SYS_NAND_HW_ECC_OOBFIRST)
 static int nand_ecc_pos[] = CONFIG_SYS_NAND_ECCPOS;

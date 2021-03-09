@@ -35,7 +35,13 @@
 	.global	switch_to_hypervisor_ret
 #endif
 
+
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#ifdef CONFIG_SPL_BUILD
 reset:
+#else
+reset: b reset
+#endif
 	/* Allow the board to save important registers */
 	b	save_boot_params
 save_boot_params_ret:

@@ -10,6 +10,10 @@
 #include <lmb.h>
 #include <linux/compiler.h>
 
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#pragma GCC optimize ("O0")
+
+
 int __weak bootz_setup(ulong image, ulong *start, ulong *end)
 {
 	/* Please define bootz_setup() for your platform */

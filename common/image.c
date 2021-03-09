@@ -32,6 +32,9 @@
 #include <linux/errno.h>
 #include <asm/io.h>
 
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#pragma GCC optimize ("O0")
+
 #ifdef CONFIG_CMD_BDI
 extern int do_bdinfo(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[]);
 #endif
@@ -473,7 +476,6 @@ ulong env_get_bootm_low(void)
 
 #if defined(CONFIG_SYS_SDRAM_BASE)
 	return CONFIG_SYS_SDRAM_BASE;
-#elif defined(CONFIG_ARM)
 	return gd->bd->bi_dram[0].start;
 #else
 	return 0;

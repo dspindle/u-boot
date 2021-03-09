@@ -46,8 +46,8 @@ static const struct cmd_control ddr3_cmd_ctrl_data = {
 };
 
 static struct emif_regs ddr3_emif_reg_data = {
-	.sdram_config		= MT41J128MJT125_EMIF_SDCFG,
-	.ref_ctrl		= MT41J128MJT125_EMIF_SDREF,
+	.sdram_config		= MT41J256MJT125_EMIF_SDCFG, //MT41J64MJT125_EMIF_SDCFG MT41J128MJT125_EMIF_SDCFG
+	.ref_ctrl		= MT41J128MJT125_EMIF_SDREF, 
 	.sdram_tim1		= MT41J128MJT125_EMIF_TIM1,
 	.sdram_tim2		= MT41J128MJT125_EMIF_TIM2,
 	.sdram_tim3		= MT41J128MJT125_EMIF_TIM3,

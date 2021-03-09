@@ -13,6 +13,9 @@
 #include <console.h>
 #include <linux/ctype.h>
 
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#pragma GCC optimize ("O0")
+
 /*
  * Use puts() instead of printf() to avoid printf buffer overflow
  * for long help messages

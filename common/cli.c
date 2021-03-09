@@ -15,6 +15,9 @@
 #include <fdtdec.h>
 #include <malloc.h>
 
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#pragma GCC optimize ("O0")
+
 DECLARE_GLOBAL_DATA_PTR;
 
 #ifdef CONFIG_CMDLINE

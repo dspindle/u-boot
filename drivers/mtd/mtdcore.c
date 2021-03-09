@@ -36,6 +36,9 @@
 
 #include "mtdcore.h"
 
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#pragma GCC optimize ("O0")
+
 #ifndef __UBOOT__
 /*
  * backing device capabilities for non-mappable devices (such as NAND flash)
@@ -973,12 +976,15 @@ int mtd_read(struct mtd_info *mtd, loff_t from, size_t len, size_t *retlen,
 	} else {
 		return -ENOTSUPP;
 	}
-
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#ifndef CONFIG_SYS_NAND_NO_ECC
 	if (unlikely(ret_code < 0))
 		return ret_code;
 	if (mtd->ecc_strength == 0)
-		return 0;	/* device lacks ecc */
+		return 0;	/* device lacks ecc */ 
+#else
 	return ret_code >= mtd->bitflip_threshold ? -EUCLEAN : 0;
+#endif	
 }
 EXPORT_SYMBOL_GPL(mtd_read);
 

@@ -15,6 +15,9 @@
 #include <nand.h>
 #include <linux/mtd/omap_elm.h>
 
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#pragma GCC optimize ("O0")
+
 #define BADBLOCK_MARKER_LENGTH	2
 #define SECTOR_BYTES		512
 #define ECCCLEAR		(0x1 << 8)
