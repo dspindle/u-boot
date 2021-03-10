@@ -29,6 +29,9 @@
 #include <jffs2/jffs2.h>
 #include <nand.h>
 
+/* ??PATCH bkana@leuze.com 2020-03-10 */
+#pragma GCC optimize ("O0")
+
 #if defined(CONFIG_CMD_MTDPARTS)
 
 /* partition handling routines */

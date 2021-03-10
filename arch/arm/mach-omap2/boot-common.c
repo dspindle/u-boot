@@ -20,6 +20,9 @@
 #include <scsi.h>
 #include <i2c.h>
 
+/* ??PATCH bkana@leuze.com 2020-03-10 */
+#pragma GCC optimize ("O0")
+
 DECLARE_GLOBAL_DATA_PTR;
 
 __weak u32 omap_sys_boot_device(void)
@@ -209,7 +212,8 @@ void spl_board_init(void)
 	arch_misc_init();
 #endif
 #if defined(CONFIG_HW_WATCHDOG)
-	hw_watchdog_init();
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+	/*hw_watchdog_init();*/
 #endif
 #ifdef CONFIG_AM33XX
 	am33xx_spl_board_init();

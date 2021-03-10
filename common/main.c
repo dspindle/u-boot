@@ -13,6 +13,9 @@
 #include <console.h>
 #include <version.h>
 
+/* ??PATCH bkana@leuze.com 2020-03-10 */
+#pragma GCC optimize ("O0")
+
 DECLARE_GLOBAL_DATA_PTR;
 
 /*

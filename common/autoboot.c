@@ -15,6 +15,9 @@
 #include <post.h>
 #include <u-boot/sha256.h>
 
+/* ??PATCH bkana@leuze.com 2020-03-10 */
+#pragma GCC optimize ("O0")
+
 DECLARE_GLOBAL_DATA_PTR;
 
 #define MAX_DELAY_STOP_STR 32
