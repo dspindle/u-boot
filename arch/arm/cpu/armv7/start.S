@@ -35,7 +35,6 @@
 	.global	switch_to_hypervisor_ret
 #endif
 
-
 /* ??PATCH bkana@leuze.com 2020-02-16 */
 #ifdef CONFIG_SPL_BUILD
 reset:

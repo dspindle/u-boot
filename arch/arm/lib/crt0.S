@@ -66,7 +66,6 @@ ENTRY(_main)
 /* ??PATCH bkana@leuze.com 2020-02-16 */
 	.globl	gd_is_initialized
 	.globl	relocate_performed
-
 /*
  * Set up initial C runtime environment and call board_init_f(0).
  */
@@ -123,7 +122,6 @@ here:
 #ifndef CONFIG_SPL_BUILD
 relocate_performed: b relocate_performed
 #endif
-
 /* Set up final (full) environment */
 
 	bl	c_runtime_cpu_setup	/* we still call old routine here */
