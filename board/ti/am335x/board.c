@@ -1081,7 +1081,8 @@ int board_init(void)
 		puts("Reset Source: Power-on reset has occurred.\n");
 
 #if defined(CONFIG_HW_WATCHDOG)
-	hw_watchdog_init();
+/* ??PATCH bkana@leuze.com 2020-03-12 */
+	/*hw_watchdog_init();*/
 #endif
 
 	gd->bd->bi_boot_params = CONFIG_SYS_SDRAM_BASE + 0x100;

@@ -66,6 +66,10 @@
 
 ENTRY(_main)
 
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+	.globl	gd_is_initialized
+	.globl	relocate_performed
+
 /*
  * Set up initial C runtime environment and call board_init_f(0).
  */
@@ -85,6 +89,9 @@ ENTRY(_main)
 
 	mov	r0, #0
 	bl	board_init_f
+
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+gd_is_initialized:
 
 #if ! defined(CONFIG_SPL_BUILD)
 
@@ -114,6 +121,11 @@ here:
  */
 
 	bl	relocate_vectors
+
+/* ??PATCH bkana@leuze.com 2020-02-16 */
+#ifndef CONFIG_SPL_BUILD
+relocate_performed: b relocate_performed
+#endif	
 
 /* Set up final (full) environment */
 

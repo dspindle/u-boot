@@ -212,8 +212,8 @@ void spl_board_init(void)
 	arch_misc_init();
 #endif
 #if defined(CONFIG_HW_WATCHDOG)
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-	/*hw_watchdog_init();*/
+/* ??PATCH bkana@leuze.com 2020-03-12 */
+	/* hw_watchdog_init(); */
 #endif
 #ifdef CONFIG_AM33XX
 	am33xx_spl_board_init();
