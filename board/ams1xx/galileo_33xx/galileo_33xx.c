@@ -135,9 +135,9 @@ int board_eth_init(bd_t *bis)
 	if (rv)
 		printf("No MAC address found!\n");
 
-	writel(RGMII_MODE_ENABLE | RGMII_INT_DELAY, &cdev->miisel);
+	writel(RMII_MODE_ENABLE | RGMII_INT_DELAY | RMII_CHIPCKL_ENABLE, &cdev->miisel);
 
-	board_phy_init();
+	/*board_phy_init();*/
 
 	rv = cpsw_register(&cpsw_data);
 	if (rv < 0)
@@ -153,10 +153,10 @@ int board_eth_init(bd_t *bis)
 	 */
 	devname = miiphy_get_current_dev();
 
-	miiphy_write(devname, 0x0, AR8051_PHY_DEBUG_ADDR_REG,
+	/*miiphy_write(devname, 0x0, AR8051_PHY_DEBUG_ADDR_REG,
 		     AR8051_DEBUG_RGMII_CLK_DLY_REG);
 	miiphy_write(devname, 0x0, AR8051_PHY_DEBUG_DATA_REG,
-		     AR8051_RGMII_TX_CLK_DLY);
+		     AR8051_RGMII_TX_CLK_DLY);*/
 	return n;
 }
 #endif /* CONFIG_DRIVER_TI_CPSW && !CONFIG_SPL_BUILD */

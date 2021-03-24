@@ -44,6 +44,10 @@
 	"fdt_addr=88000000\0" \
 	"console=ttyO0,115200n8\0" \
 	"source ${loadaddr}\0" \
+	"ethaddr=00:15:7b:00:00:03\0" \
+	"serverip=192.168.60.1\0" \
+	"ipaddr=192.168.60.22\0" \
+	"netmask=255.255.255.0\0" \
 	NANDARGS
 
 #define CONFIG_BOOTCOMMAND \

@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0+
 /*
- * Pinmux configuration for Compulab CM-T335 board
+ * Pinmux configuration for Galileo ams1xx board
  *
- * Copyright (C) 2013, Compulab Ltd - http://compulab.co.il/
+ * Copyright (C) 2021, Leuze Electronic - http://leuze.de/
  *
- * Author: Ilya Ledvich <ilya@compulab.co.il>
+ * Author: berrux Kana and Dominik Spindler <bkana@leuze.de> <dspindle@leuze.de>
  */
 
 #include <common.h>
@@ -52,20 +52,16 @@ static struct module_pin_mux i2c1_pin_mux[] = {
 };
 
 static struct module_pin_mux rgmii1_pin_mux[] = {
-	{OFFSET(mii1_txen), MODE(2)},			/* RGMII1_TCTL */
-	{OFFSET(mii1_rxdv), MODE(2) | RXACTIVE},	/* RGMII1_RCTL */
-	{OFFSET(mii1_txd3), MODE(2)},			/* RGMII1_TD3 */
-	{OFFSET(mii1_txd2), MODE(2)},			/* RGMII1_TD2 */
-	{OFFSET(mii1_txd1), MODE(2)},			/* RGMII1_TD1 */
-	{OFFSET(mii1_txd0), MODE(2)},			/* RGMII1_TD0 */
-	{OFFSET(mii1_txclk), MODE(2)},			/* RGMII1_TCLK */
-	{OFFSET(mii1_rxclk), MODE(2) | RXACTIVE},	/* RGMII1_RCLK */
-	{OFFSET(mii1_rxd3), MODE(2) | RXACTIVE},	/* RGMII1_RD3 */
-	{OFFSET(mii1_rxd2), MODE(2) | RXACTIVE},	/* RGMII1_RD2 */
-	{OFFSET(mii1_rxd1), MODE(2) | RXACTIVE},	/* RGMII1_RD1 */
-	{OFFSET(mii1_rxd0), MODE(2) | RXACTIVE},	/* RGMII1_RD0 */
+	{OFFSET(mii1_txen), MODE(1)},			/* RGMII1_TCTL */
+	{OFFSET(mii1_txd1), MODE(1)},			/* RGMII1_TD1 */
+	{OFFSET(mii1_txd0), MODE(1)},			/* RGMII1_TD0 */
+	{OFFSET(mii1_rxd1), MODE(1) | RXACTIVE},	/* RGMII1_RD1 */
+	{OFFSET(mii1_rxd0), MODE(1) | RXACTIVE},	/* RGMII1_RD0 */
 	{OFFSET(mdio_data), MODE(0) | RXACTIVE | PULLUP_EN},/* MDIO_DATA */
 	{OFFSET(mdio_clk), MODE(0) | PULLUP_EN},	/* MDIO_CLK */
+	{OFFSET(mii1_rxerr), MODE(1) | RXACTIVE},
+	{OFFSET(mii1_crs), MODE(1) | RXACTIVE},	
+	{OFFSET(rmii1_refclk), MODE(0) | RXACTIVE},
 	{-1},
 };
 
