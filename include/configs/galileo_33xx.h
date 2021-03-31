@@ -30,11 +30,16 @@
 #define NANDARGS \
 	"mtdids=" CONFIG_MTDIDS_DEFAULT "\0" \
 	"mtdparts=" CONFIG_MTDPARTS_DEFAULT "\0" \
-	"nandargs=setenv bootargs console=${console}\0" \
+	"nandargs=setenv bootargs console=${console} " \
+		"root=${nandroot} " \
+		"rootfstype=${nandrootfstype}\0" \
+	"nandroot=ubi0:rootfs rw ubi.mtd=rootfs,2048\0" \
+	"nandrootfstype=ubifs rootwait=1\0" \
 	"nandboot=echo Booting from nand bkana ...; " \
 		"run nandargs; " \
-		"nboot ${loadaddr} nand0 900000; " \
-		"bootm ${loadaddr}\0"
+		"nand read ${fdt_addr} dtb; " \
+		"nand read ${loadaddr} kernel; " \
+		"bootz ${loadaddr} - ${fdt_addr}\0"
 
 /*	"loadenv=echo Importing device tree from Nand ...; " \
 		"ubifsload ${fdtaddr} nand0 400000; " \*/
@@ -43,6 +48,7 @@
 	"loadaddr=82000000\0" \
 	"fdt_addr=88000000\0" \
 	"console=ttyO0,115200n8\0" \
+	"rootfs_name=rootfs\0" \
 	"source ${loadaddr}\0" \
 	"ethaddr=00:15:7b:00:00:03\0" \
 	"serverip=192.168.60.1\0" \

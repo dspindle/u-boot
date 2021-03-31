@@ -28,6 +28,8 @@ enum omap_ecc {
 	OMAP_ECC_BCH8_CODE_HW,
 	/* 16-bit  ECC calculation by GPMC, Error detection by ELM */
 	OMAP_ECC_BCH16_CODE_HW,
+/* ??PATCH bkana@leuze.com 2020-03-24 */
+	OMAP_ECC_NONE,
 };
 
 struct gpmc_cs {

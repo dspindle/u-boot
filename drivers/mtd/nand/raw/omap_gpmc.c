@@ -717,8 +717,20 @@ static int omap_select_ecc_scheme(struct nand_chip *nand,
 	struct nand_ecclayout	*ecclayout	= &omap_ecclayout;
 	int eccsteps = pagesize / SECTOR_BYTES;
 	int i;
+	
 
 	switch (ecc_scheme) {
+	case OMAP_ECC_NONE:
+		debug("nand: selected OMAP_ECC_NONE\n");
+		/* For this ecc-scheme, ecc.bytes, ecc.layout, ... are
+		 * initialized in nand_scan_tail(), so just set ecc.mode */
+		memset(&nand->ecc, 0, sizeof(struct nand_ecc_ctrl));
+		info->control		= NULL;
+		nand->ecc.mode		= NAND_ECC_NONE;
+		nand->ecc.layout	= NULL;
+		nand->ecc.size		= 0;
+		break;
+
 	case OMAP_ECC_HAM1_CODE_SW:
 		debug("nand: selected OMAP_ECC_HAM1_CODE_SW\n");
 		/* For this ecc-scheme, ecc.bytes, ecc.layout, ... are
@@ -727,7 +739,7 @@ static int omap_select_ecc_scheme(struct nand_chip *nand,
 		nand->ecc.mode		= NAND_ECC_SOFT;
 		nand->ecc.layout	= NULL;
 		nand->ecc.size		= 0;
-		break;
+		break;		
 
 	case OMAP_ECC_HAM1_CODE_HW:
 		debug("nand: selected OMAP_ECC_HAM1_CODE_HW\n");
@@ -1017,6 +1029,10 @@ int board_nand_init(struct nand_chip *nand)
 #if defined(CONFIG_NAND_OMAP_ECCSCHEME)
 	err = omap_select_ecc_scheme(nand, CONFIG_NAND_OMAP_ECCSCHEME,
 			CONFIG_SYS_NAND_PAGE_SIZE, CONFIG_SYS_NAND_OOBSIZE);
+/* ??PATCH bkana@leuze.com 2020-03-24 */
+#elif defined(CONFIG_SYS_NAND_NO_ECC)
+	err = omap_select_ecc_scheme(nand, OMAP_ECC_NONE,
+			0, 0);			
 #else
 	/* pagesize and oobsize are not required to configure sw ecc-scheme */
 	err = omap_select_ecc_scheme(nand, OMAP_ECC_HAM1_CODE_SW,

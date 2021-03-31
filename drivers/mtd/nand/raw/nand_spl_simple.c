@@ -243,6 +243,10 @@ void nand_init(void)
 	 * Init board specific nand support
 	 */
 	mtd = nand_to_mtd(&nand_chip);
+/* ??PATCH bkana@leuze.com 2020-03-24 */	
+#ifdef CONFIG_SYS_NAND_NO_ECC
+	mtd->ecc_strength = 0;
+#endif
 	nand_chip.IO_ADDR_R = nand_chip.IO_ADDR_W =
 		(void  __iomem *)CONFIG_SYS_NAND_BASE;
 	board_nand_init(&nand_chip);
