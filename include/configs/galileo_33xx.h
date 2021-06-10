@@ -1,10 +1,10 @@
 /* SPDX-License-Identifier: GPL-2.0+ */
 /*
- * Config file for Compulab CM-T335 board
+ * Config file for Galileo-33x board
  *
- * Copyright (C) 2013, Compulab Ltd - http://compulab.co.il/
+ * Copyright (C) 2021, Leuze Electronic -https://www.leuze.com
  *
- * Author: Ilya Ledvich <ilya@compulab.co.il>
+ * Author: Berrux Nguimeya Kana <bkana@leuze.de>
  */
 
 #ifndef __CONFIG_GALILEO_33XX
