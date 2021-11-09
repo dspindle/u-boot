@@ -10,7 +10,7 @@
 #ifndef __CONFIG_GALILEO_33XX
 #define __CONFIG_GALILEO_33XX
 
-#define CONFIG_GALILEO_33XX
+//#define CONFIG_GALILEO_33XX
 
 #include <configs/ti_am335x_common.h>
 
