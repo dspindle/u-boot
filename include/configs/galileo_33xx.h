@@ -92,9 +92,19 @@
 	"echo Determining boot slot...; " \
 	"run bootchoose_cmd; " \
 	"echo Loading kernel and device-tree...; "  \
-	"run load_cmd; " \
-	"echo Starting kernel...; " \
-	"bootz ${kernel_loadaddr} - ${fdt_loadaddr}; " \
+	"if run load_cmd; then " \
+		"echo \"Loading: OK\"; " \
+		"echo Starting kernel...; " \
+		"if bootz ${kernel_loadaddr} - ${fdt_loadaddr}; then " \
+			"echo \"OK\"; " \
+		"else " \
+			"echo \"Booting failed!\"; " \
+			"reset; " \
+		"fi; " \
+	"else " \
+		"echo \"Loading failed!\"; " \
+		"reset; " \
+	"fi; " \
 	"\0"
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
