@@ -150,9 +150,11 @@
 
 #undef CONFIG_SYS_NAND_U_BOOT_OFFS
 /* ??PATCH bkana@leuze.com 2021-02-16 */
-#define CONFIG_SYS_NAND_U_BOOT_OFFS	0x180000
+#define CONFIG_SYS_NAND_U_BOOT_OFFS		0x180000
+#define CONFIG_SYS_NAND_U_BOOT_OFFS_REDUND	0x280000
 
-#define CONFIG_ENV_OFFSET		0x380000 /* environment starts here */
+#define CONFIG_ENV_OFFSET		0x380000 /* primary environment starts here */
+#define CONFIG_ENV_OFFSET_REDUND	0x3A0000 /* redundant environment starts here */
 
 #define CONFIG_SYS_ENV_SECT_SIZE	(128 << 10)	/* 128 KiB */
 #define CONFIG_SYS_NAND_ONFI_DETECTION
