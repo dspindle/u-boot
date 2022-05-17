@@ -30,9 +30,6 @@
 #include <nand.h>
 #include <jffs2/jffs2.h>
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 typedef struct erase_info	erase_info_t;
 typedef struct mtd_info		mtd_info_t;
 

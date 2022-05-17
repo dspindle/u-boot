@@ -36,9 +36,6 @@
 
 #include "mtdcore.h"
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 #ifndef __UBOOT__
 /*
  * backing device capabilities for non-mappable devices (such as NAND flash)

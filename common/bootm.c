@@ -29,9 +29,6 @@
 #include <bootm.h>
 #include <image.h>
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 #ifndef CONFIG_SYS_BOOTM_LEN
 /* use 8MByte as default max gunzip size */
 #define CONFIG_SYS_BOOTM_LEN	0x800000

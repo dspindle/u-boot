@@ -11,9 +11,6 @@
 #include <linux/libfdt_env.h>
 #include <fdt.h>
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 #if defined(CONFIG_SPL_NAND_RAW_ONLY)
 static int spl_nand_load_image(struct spl_image_info *spl_image,
 			struct spl_boot_device *bootdev)

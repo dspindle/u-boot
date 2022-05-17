@@ -12,9 +12,6 @@
 #include <vxworks.h>
 #include <tee/optee.h>
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 DECLARE_GLOBAL_DATA_PTR;
 
 static int do_bootm_standalone(int flag, int argc, char * const argv[],
