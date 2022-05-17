@@ -23,8 +23,6 @@
 #define V_OSCK				25000000  /* Clock output from T2 */
 #define V_SCLK				(V_OSCK)
 
-#define CONFIG_ENV_SIZE			(16 << 10)	/* 16 KiB */
-
 #ifndef CONFIG_SPL_BUILD
 
 #define NETWORK_ARGS \
@@ -42,8 +40,8 @@
 	"fdt_loadaddr=88000000\0"
 
 #define KERNEL_ARGS \
-	"console=ttyO0,115200n8\0" \
-	"rootargs_ubi=rw ubi.mtd=ubi,2048\0" \
+	"console=ttyO0,115200n8 quiet\0" \
+	"rootargs_ubi=rw ubi.mtd=ubi,2048 ubi.fm_autoconvert=1\0" \
 	"rootfstype_ubi=ubifs rootwait=1\0"
 
 #define BOOT_ARGS \
@@ -64,14 +62,14 @@
 			"if test ${BOOT_A_LEFT} -gt 0; then " \
 				"echo \"Found valid slot A, ${BOOT_A_LEFT} attempts remaining\"; " \
 				"setexpr BOOT_A_LEFT ${BOOT_A_LEFT} - 1; " \
-				"setenv load_cmd \"nand read ${kernel_loadaddr} kernelA; nand read ${fdt_loadaddr} dtbA;\"; " \
+				"setenv load_cmd \"ubi part ubi && ubifsmount ubi:bootfsA && ubifsload ${kernel_loadaddr} /zImage && ubifsload ${fdt_loadaddr} /am335x-galileo-33xx.dtb && ubifsumount && ubi detach\"; " \
 				"setenv bootargs \"${default_bootargs} root=ubi0:rootfsA ${rootargs_ubi} rauc.slot=A\"; " \
 			"fi; " \
 		"elif test \"x${BOOT_SLOT}\" = \"xB\"; then " \
 			"if test ${BOOT_B_LEFT} -gt 0; then " \
 				"echo \"Found valid slot B, ${BOOT_B_LEFT} attempts remaining\"; " \
 				"setexpr BOOT_B_LEFT ${BOOT_B_LEFT} - 1; " \
-				"setenv load_cmd \"nand read ${kernel_loadaddr} kernelB; nand read ${fdt_loadaddr} dtbB;\"; " \
+				"setenv load_cmd \"ubi part ubi && ubifsmount ubi:bootfsB && ubifsload ${kernel_loadaddr} /zImage && ubifsload ${fdt_loadaddr} /am335x-galileo-33xx.dtb && ubifsumount && ubi detach\"; " \
 				"setenv bootargs \"${default_bootargs} root=ubi0:rootfsB ${rootargs_ubi} rauc.slot=B\"; " \
 			"fi; " \
 		"fi; " \
@@ -145,7 +143,7 @@
 #define CONFIG_SYS_NAND_PAGE_COUNT	(CONFIG_SYS_NAND_BLOCK_SIZE / \
 					 CONFIG_SYS_NAND_PAGE_SIZE)
 #define CONFIG_SYS_NAND_PAGE_SIZE	2048
-#define CONFIG_SYS_NAND_OOBSIZE		128
+#define CONFIG_SYS_NAND_OOBSIZE		64
 #define CONFIG_SYS_NAND_BLOCK_SIZE	(128 * 1024)
 #define CONFIG_SYS_NAND_BAD_BLOCK_POS	NAND_LARGE_BADBLOCK_POS
 #define CONFIG_SYS_NAND_ECCPOS		{ 0, }
@@ -163,10 +161,15 @@
 #define CONFIG_SYS_NAND_U_BOOT_OFFS		0x180000
 #define CONFIG_SYS_NAND_U_BOOT_OFFS_REDUND	0x280000
 
-#define CONFIG_ENV_OFFSET		0x380000 /* primary environment starts here */
-#define CONFIG_ENV_OFFSET_REDUND	0x3A0000 /* redundant environment starts here */
+#define CONFIG_ENV_SIZE			(16 << 10)	/* 16 KiB */
 
-#define CONFIG_SYS_ENV_SECT_SIZE	(128 << 10)	/* 128 KiB */
+#define CONFIG_ENV_OFFSET		0x380000 	/* primary environment starts here */
+#define CONFIG_ENV_OFFSET_REDUND	0x3A0000 	/* redundant environment starts here */
+
+#define CONFIG_ENV_RANGE		(512 << 10)	/* 512 KiB */
+#define CONFIG_SYS_ENV_SECT_SIZE	(512 << 10)	/* 512 KiB */
+
+
 #define CONFIG_SYS_NAND_ONFI_DETECTION
 #ifdef CONFIG_SPL_OS_BOOT
 #define CONFIG_SYS_NAND_SPL_KERNEL_OFFS	0x500000
@@ -174,16 +177,6 @@
 
 /* GPIO pin + bank to pin ID mapping */
 #define GPIO_PIN(_bank, _pin)		((_bank << 5) + _pin)
-
-/* Status LED */
-/* Status LED polarity is inversed, so init it in the "off" state */
-
-/* EEPROM */
-#define CONFIG_ENV_EEPROM_IS_ON_I2C
-#define CONFIG_SYS_I2C_EEPROM_ADDR_LEN		1
-#define CONFIG_SYS_EEPROM_PAGE_WRITE_BITS	4
-#define CONFIG_SYS_EEPROM_PAGE_WRITE_DELAY_MS	5
-#define CONFIG_SYS_EEPROM_SIZE			256
 
 #ifndef CONFIG_SPL_BUILD
 /*

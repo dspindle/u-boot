@@ -39,7 +39,8 @@ CONFIG_CMD_MII=y
 CONFIG_CMD_PING=y
 CONFIG_CMD_MTDPARTS=y
 CONFIG_MTDIDS_DEFAULT="nand0=nand"
-CONFIG_MTDPARTS_DEFAULT="mtdparts=nand:128k(spl0),128k(spl1),128k(res0),128k(res1),1m(res2),1m(u-boot0),1m(res3),128k(u-boot-env0),128k(u-boot-env1),256k(res4),6m(kernelA),6m(kernelB),256k(dtbA),256k(dtbB),1536k(res5),-(ubi)"
+CONFIG_MTDPARTS_DEFAULT="mtdparts=nand:128k(spl0),128k(spl1),128k(res0),128k(res1),1m(res2),1m(u-boot0),1m(u-boot1),512k(u-boot-env0),512k(u-boot-env1),512k(res3),-(ubi)"
+CONFIG_CMD_UBI=y
 CONFIG_DOS_PARTITION=y
 CONFIG_ISO_PARTITION=y
 CONFIG_SPL_PARTITION_UUIDS=y
@@ -54,6 +55,8 @@ CONFIG_LED_STATUS_BOOT=0
 # CONFIG_MMC is not set
 CONFIG_NAND=y
 # CONFIG_SPL_NAND_AM33XX_BCH is not set
+CONFIG_MTD_UBI_FASTMAP=y
+CONFIG_MTD_UBI_FASTMAP_AUTOCONVERT=0
 CONFIG_MII=y
 CONFIG_DRIVER_TI_CPSW=y
 CONFIG_OF_LIBFDT=y
