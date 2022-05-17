@@ -164,7 +164,7 @@
 #define CONFIG_ENV_SIZE			(16 << 10)	/* 16 KiB */
 
 #define CONFIG_ENV_OFFSET		0x380000 	/* primary environment starts here */
-#define CONFIG_ENV_OFFSET_REDUND	0x3A0000 	/* redundant environment starts here */
+#define CONFIG_ENV_OFFSET_REDUND	0x400000 	/* redundant environment starts here */
 
 #define CONFIG_ENV_RANGE		(512 << 10)	/* 512 KiB */
 #define CONFIG_SYS_ENV_SECT_SIZE	(512 << 10)	/* 512 KiB */
