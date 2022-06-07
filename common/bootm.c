@@ -29,9 +29,6 @@
 #include <bootm.h>
 #include <image.h>
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 #ifndef CONFIG_SYS_BOOTM_LEN
 /* use 8MByte as default max gunzip size */
 #define CONFIG_SYS_BOOTM_LEN	0x800000
@@ -79,12 +76,6 @@ static int bootm_start(cmd_tbl_t *cmdtp, int flag, int argc,
 {
 	memset((void *)&images, 0, sizeof(images));
 	images.verify = env_get_yesno("verify");
-
-    /* ??PATCH bkana@leuze.com 2020-02-16 */
-	if(images.verify < 0) {
-		images.verify = 0;
-	}
-
 
 	boot_start_lmb(&images);
 

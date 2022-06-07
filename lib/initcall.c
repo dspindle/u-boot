@@ -7,9 +7,6 @@
 #include <initcall.h>
 #include <efi.h>
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 DECLARE_GLOBAL_DATA_PTR;
 
 int initcall_run_list(const init_fnc_t init_sequence[])

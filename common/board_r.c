@@ -49,9 +49,6 @@
 #include <linux/err.h>
 #include <efi_loader.h>
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 DECLARE_GLOBAL_DATA_PTR;
 
 ulong monitor_flash_len;

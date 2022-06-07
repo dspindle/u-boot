@@ -12,9 +12,6 @@
 #include <console.h>
 #include <version.h>
 
-/* ??PATCH bkana@leuze.com 2020-02-16 */
-#pragma GCC optimize ("O0")
-
 /*
  * Board-specific Platform code can reimplement show_boot_progress () if needed
  */
